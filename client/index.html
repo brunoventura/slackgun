@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css">
+    <style>
+        .is-invisible {
+            height: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">
+                SlackGun
+            </h1>
+            <p class="subtitle">
+                Best tool to <strong>ANNOY</strong> your team!
+            </p>
+
+            <form id="slackgun">
+
+                <div id="error" class="notification is-warning is-invisible is-marginless is-paddingless"></div>
+
+                <div class="field">
+                    <label class="label">Slack Token (<a href="https://api.slack.com/custom-integrations/legacy-tokens" target="_blank">Generate here</a>)</label>
+                    <div class="control">
+                        <input required name="token" class="input form-field" type="text" placeholder="Token">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Emails (Separeted by commas)</label>
+                    <div class="control">
+                        <textarea required name="emails" class="textarea form-field" placeholder="email1@domain.com, email2@domain.com, email3@domain.com"></textarea>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Simple template</label>
+                    <div class="control">
+                        <textarea required name="template" class="textarea form-field" placeholder="Hi {{first_name}}, it's a test!"></textarea>
+                    </div>
+                </div>
+                <p>You can use the tags <strong>{{real_name}}</strong> (for full name), <strong>{{first_name}}</strong> and
+                    <strong>{{last_name}}</strong> (not all users have) in the template.</p>
+                <p>New features and more complex templates in the future</p>
+                <div class="field">
+                    <input type="submit" class="button is-success send" value="Send"></input>
+                </div>
+
+            </form>
+        </div>
+    </section>
+
+    <div id="loader" class="modal">
+        <div class="modal-background"></div>
+    </div>
+
+    <div id="feedback" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Result</p>
+                <button class="delete close" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <!-- Content ... -->
+            </section>
+        </div>
+    </div>
+
+    <script src="./app.js"></script>
+</body>
+
+</html>
