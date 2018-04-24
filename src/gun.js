@@ -23,7 +23,9 @@ async function sendMessage(slack, { id, profile }, template) {
 
 function createUserMap({ members }) {
     return members.reduce((obj, cur) => {
-        obj[cur.profile.email] = cur;
+        if (cur.profile.email) {
+            obj[cur.profile.email.toUpperCase()] = cur;
+        }
         return obj;
     }, {});
 }
@@ -32,7 +34,11 @@ async function slackgun({ token, emails, template }) {
     const slack = new WebClient(token);
     const users = createUserMap(await slack.users.list());
     
-    emails = emails.split(',').map(email => email.trim());
+    emails = emails
+        .match(/[^\r\n\,]+/g)
+        .map(email => email.toUpperCase().trim());
+    
+    console.log(emails);
     const selectedUsers = [];
     const invalidEmails = [];
     
